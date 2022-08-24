@@ -1,0 +1,32 @@
+name: test
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    paths:
+      - "fixtures/**.png"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Check size
+    steps:
+      - uses: actions/checkout@v3
+      - name: action step
+        uses: chick-p/action-png-size-lint@main
+        continue-on-error: true
+        id: lint
+        with:
+          image-paths: |
+            fixtures/**/*.png
+          limit: 90
+
+      - run: |
+          exit 0
+        if: ${{ steps.lint.outcome == 'failure' }}
+
+      - run: |
+          echo "this workflow should throw an error"
+          exit 1
+        if: steps.lint.outcome == 'success'

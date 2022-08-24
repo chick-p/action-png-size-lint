@@ -1,0 +1,13 @@
+name: "png-size-lint"
+description: "This GitHub Action is that check png files if the file size can be reduced."
+inputs:
+  image-paths:
+    description: "The image file paths as blob"
+    default: |
+      **/*.png
+  limit:
+    description: "limit of a compression rate"
+    default: "80"
+runs:
+  using: "docker"
+  image: "Dockerfile"
