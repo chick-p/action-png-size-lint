@@ -1,0 +1,37 @@
+{
+  "name": "action-png-size-lint",
+  "version": "0.1.0",
+  "description": "This GitHub Action is that check png files if the file size can be reduced.",
+  "author": "chick-p",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "lint": "run-p lint:*",
+    "lint:prettier": "prettier --check .",
+    "lint:eslint": "eslint --ext .js",
+    "fix": "run-s fix:*",
+    "fix:prettier": "prettier -w .",
+    "fix:eslint": "npm run lint:eslint --fix"
+  },
+  "keywords": [],
+  "dependencies": {
+    "@actions/core": "^1.9.1",
+    "glob": "^8.0.3",
+    "zopflipng-bin": "^7.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.22.0",
+    "eslint-config-prettier": "^8.5.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.7.1"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/chick-p/action-png-size-lint.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chick-p/action-png-size-lint/issues"
+  },
+  "homepage": "https://github.com/chick-p/action-png-size-lint#readme"
+}
