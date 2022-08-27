@@ -12,14 +12,18 @@ async function main() {
     );
     const limit = core.getInput("limit");
 
-    const imagePaths = await globPaths.reduce(async (prev, globPath) => {
-      const paths = await glob(globPath, {
+    const globPromises = globPaths.map((globPath) =>
+      glob(globPath, {
         nodir: true,
         follow: false,
-        dot: true,
-      });
-      return [...prev, ...paths];
-    }, []);
+      })
+    );
+    const results = await Promise.all(globPromises);
+    const imagePaths = results.flat();
+    if (imagePaths.length === 0) {
+      console.log("Files are not found.");
+      return;
+    }
 
     // find saving rate
     const regexp = /Percentage of original: ([\d.]+)%/m;
