@@ -6,7 +6,10 @@ const glob = util.promisify(require("glob"));
 async function main() {
   try {
     const { default: zopflipng } = await import("zopflipng-bin");
-    const globPaths = core.getMultilineInput("image-paths");
+    const paths = core.getMultilineInput("image-paths");
+    const globPaths = paths.filter((path) =>
+      path.toLowerCase().endsWith(".png")
+    );
     const limit = core.getInput("limit");
 
     const imagePaths = await globPaths.reduce(async (prev, globPath) => {
