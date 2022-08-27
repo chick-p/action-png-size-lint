@@ -31,7 +31,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Check size
-        uses: chick-p/action-png-size-lint@v0.1.0
+        uses: chick-p/action-png-size-lint@v0
         with:
           image-paths: |
             fixtures/**/*.png
