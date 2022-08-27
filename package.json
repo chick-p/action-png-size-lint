@@ -1,6 +1,6 @@
 {
   "name": "action-png-size-lint",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "This GitHub Action is that check png files if the file size can be reduced.",
   "author": "chick-p",
   "private": true,
