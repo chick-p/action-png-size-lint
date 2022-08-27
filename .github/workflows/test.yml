@@ -20,6 +20,7 @@ jobs:
         with:
           image-paths: |
             fixtures/**/*.png
+            fixtures/ok.png
           limit: 90
 
       - run: |
