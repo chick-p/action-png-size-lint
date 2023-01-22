@@ -1,19 +1,15 @@
-name: Run release
+name: Run Tagging and Release
 
 on:
   workflow_dispatch:
     inputs:
       version:
-        description: "Release version"
+        description: "Version"
         required: true
         type: string
-      isKeepMinorBranch:
-        default: true
-        type: boolean
 
 jobs:
   call:
-    uses: chick-p/github-actions-shared-workflow/.github/workflows/release.yml@v0
+    uses: chick-p/github-actions-shared-workflow/.github/workflows/release.yml@main
     with:
       version: ${{ inputs.version }}
-      isKeepMinorBranch: ${{ inputs.isKeepMinorBranch }}
