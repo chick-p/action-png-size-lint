@@ -19,6 +19,9 @@ updates:
 
   - package-ecosystem: "docker"
     directory: "/"
+    ignore:
+      - dependency-name: "node"
+        versions: ["15.x", "17.x", "19.x"]
     schedule:
       interval: "weekly"
       day: "saturday"
