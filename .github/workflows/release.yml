@@ -1,18 +1,19 @@
-name: release
+name: Run release
 
 on:
-  push:
-    tags:
-      - "v*.*.*"
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version'
+        required: true
+        type: string
+      isKeepMinorBranch:
+        default: true
+        type: boolean
 
 jobs:
-  release:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Push HEAD to main version branch
-        run: |
-          major_version=$(echo "${GITHUB_REF_NAME}" | sed -E "s/(v[0-9]+)\..+/\1/")
-          git push --force origin "HEAD:refs/heads/${major_version}"
-          minor_version=$(echo "${GITHUB_REF_NAME}" | sed -E "s/(v[0-9]+\.[0-9]+).+/\1/")
-          git push --force origin "HEAD:refs/heads/${minor_version}"
+  call:
+    uses: chick-p/github-actions-shared-workflow/.github/workflows/release.yml@v0
+    with:
+      version: ${{ inputs.version }}
+      isKeepMinorBranch: ${{ inputs.isKeepMinorBranch }}
