@@ -1,4 +1,4 @@
-name: test
+name: Run action
 on:
   push:
     branches:
@@ -13,8 +13,8 @@ jobs:
     name: Check size
     steps:
       - uses: actions/checkout@v3
-      - name: action step
-        uses: chick-p/action-png-size-lint@main
+
+      - uses: chick-p/action-png-size-lint@main
         continue-on-error: true
         id: lint
         with:
