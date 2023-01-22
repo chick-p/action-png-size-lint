@@ -1,0 +1,19 @@
+name: Run release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Release version"
+        required: true
+        type: string
+      isKeepMinorBranch:
+        default: true
+        type: boolean
+
+jobs:
+  call:
+    uses: chick-p/github-actions-shared-workflow/.github/workflows/release.yml@v0
+    with:
+      version: ${{ inputs.version }}
+      isKeepMinorBranch: ${{ inputs.isKeepMinorBranch }}
