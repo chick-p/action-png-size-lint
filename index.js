@@ -8,7 +8,7 @@ async function main() {
     const { default: zopflipng } = await import("zopflipng-bin");
     const paths = core.getMultilineInput("image-paths");
     const globPaths = paths.filter((path) =>
-      path.toLowerCase().endsWith(".png")
+      path.toLowerCase().endsWith(".png"),
     );
     const limit = core.getInput("limit");
 
@@ -16,7 +16,7 @@ async function main() {
       glob(globPath, {
         nodir: true,
         follow: false,
-      })
+      }),
     );
     const results = await Promise.all(globPromises);
     const imagePaths = results.flat();
@@ -48,7 +48,7 @@ async function main() {
 
     if (largeImages.length > 0) {
       throw new Error(
-        `Found files to be able to be reduced size\n${largeImages.join("\n")}`
+        `Found files to be able to be reduced size\n${largeImages.join("\n")}`,
       );
     }
   } catch (error) {
