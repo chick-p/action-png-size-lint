@@ -8,7 +8,7 @@
   "scripts": {
     "lint": "run-p lint:*",
     "lint:prettier": "prettier --check .",
-    "lint:eslint": "eslint --ext .js",
+    "lint:eslint": "eslint index.js",
     "fix": "run-s fix:*",
     "fix:prettier": "prettier -w .",
     "fix:eslint": "npm run lint:eslint --fix"
