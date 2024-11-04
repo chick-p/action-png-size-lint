@@ -14,9 +14,11 @@ Required.
 The allowed saving rate.
 Optional. Default is `80`.
 
-## Example usage
+## Usage
 
-.github/workflows/lint.yml
+### Example 1
+
+Check the size of the png files in the `fixtures` directory.
 
 ```yaml
 name: lint
@@ -25,15 +27,44 @@ on:
     paths:
       - "fixtures/**.png"
 jobs:
-  lint:
+  png-size-lint:
     runs-on: ubuntu-latest
     name: Image compress
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Check size
         uses: chick-p/action-png-size-lint@v0
         with:
           image-paths: |
             fixtures/**/*.png
+          limit: 90
+```
+
+### Example 2
+
+Check the size of png files in diff
+
+```yaml
+name: lint
+on:
+  pull_request:
+    paths:
+      - "**.png"
+jobs:
+  png-size-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: List changed files
+        id: png-files
+        run: |
+          {
+            echo 'CHANGED_FILES<<EOF'
+            echo `git diff ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} --diff-filter=AM --name-only -- "*.png"`
+            echo 'EOF'
+          } >> $GITHUB_OUTPUT
+      - uses: chick-p/action-png-size-lint@v0
+        with:
+          image-paths: ${{ steps.png-files.outputs.CHANGED_FILES }}
           limit: 90
 ```
