@@ -60,9 +60,13 @@ jobs:
         run: |
           {
             echo 'CHANGED_FILES<<EOF'
-            echo `git diff ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} --diff-filter=AM --name-only -- "*.png"`
+            git diff "$BASE_SHA" "$HEAD_SHA" --diff-filter=AM --name-only -- "*.png"
             echo 'EOF'
-          } >> $GITHUB_OUTPUT
+          } >> "$GITHUB_OUTPUT"
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+
       - uses: chick-p/action-png-size-lint@v0
         with:
           image-paths: ${{ steps.png-files.outputs.CHANGED_FILES }}
