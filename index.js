@@ -1,7 +1,6 @@
 const core = require("@actions/core");
-const util = require("util");
 const execFileSync = require("node:child_process").execFileSync;
-const glob = util.promisify(require("glob"));
+const { glob } = require("glob");
 
 async function main() {
   try {
