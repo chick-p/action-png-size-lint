@@ -1,0 +1,43 @@
+name: Test
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Check size
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Success test
+        uses: ./
+        with:
+          image-paths: |
+            fixtures/ok/1.png
+            fixtures/ok/2.png
+          limit: 90
+
+      - name: Glob test
+        uses: ./
+        with:
+          image-paths: |
+            fixtures/ok/**/*.png
+          limit: 90
+
+      - name: Fail test
+        uses: ./
+        continue-on-error: true
+        id: fail-test
+        with:
+          image-paths: |
+            fixtures/ng/**/*.png
+          limit: 90
+
+      - name: Check if fail test is successful
+        run: |
+          echo "This workflow should throw an error"
+          exit 1
+        if: steps.fail-test.outcome == 'success'
