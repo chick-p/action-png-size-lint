@@ -28,7 +28,7 @@ async function main() {
     const regexp = /Percentage of original: ([\d.]+)%/m;
 
     const largeImages = imagePaths.reduce((prev, imagePath) => {
-      console.log(`Check ${imagePath}`);
+      console.log(`Checking ${imagePath}`);
       const stdoutBuffer = execFileSync(zopflipng, [
         "-d",
         imagePath,
@@ -46,14 +46,15 @@ async function main() {
     }, []);
 
     if (largeImages.length > 0) {
-      throw new Error(
-        `Found files to be able to be reduced size\n${largeImages.join("\n")}`,
-      );
+      for (const imagePath of largeImages) {
+        core.error(`${imagePath} is too large.`);
+      }
+      core.setFailed("Found files to be able to be reduced size.");
     }
   } catch (error) {
     const zopflipngError = error?.stdout?.toString();
     if (zopflipngError) {
-      console.error(zopflipngError);
+      core.error(zopflipngError);
     }
     core.setFailed(error.message);
   }
