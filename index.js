@@ -28,7 +28,7 @@ async function main() {
     const regexp = /Percentage of original: ([\d.]+)%/m;
 
     const largeImages = imagePaths.reduce((prev, imagePath) => {
-      console.log(`Check ${imagePath}`);
+      console.log(`Checking ${imagePath}`);
       const stdoutBuffer = execFileSync(zopflipng, [
         "-d",
         imagePath,
