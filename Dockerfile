@@ -1,4 +1,4 @@
-FROM node:24-slim
+FROM node:25-slim
 
 RUN mkdir -p /usr/local/src/image-actions
 WORKDIR /usr/local/src/image-actions
