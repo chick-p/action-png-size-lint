@@ -1,10 +1,10 @@
-const core = require("@actions/core");
-const execFileSync = require("node:child_process").execFileSync;
-const { glob } = require("glob");
+import * as core from "@actions/core";
+import { execFileSync } from "node:child_process";
+import { glob } from "glob";
+import zopflipng from "zopflipng-bin";
 
 async function main() {
   try {
-    const { default: zopflipng } = await import("zopflipng-bin");
     const paths = core.getMultilineInput("image-paths");
     const globPaths = paths.filter((path) =>
       path.toLowerCase().endsWith(".png"),
