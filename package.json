@@ -4,6 +4,7 @@
   "description": "This GitHub Action is that check png files if the file size can be reduced.",
   "author": "chick-p",
   "private": true,
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "lint": "run-p lint:*",
