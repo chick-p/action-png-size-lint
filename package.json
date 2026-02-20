@@ -17,7 +17,7 @@
   "keywords": [],
   "dependencies": {
     "@actions/core": "^3.0.0",
-    "glob": "^13.0.3",
+    "glob": "^13.0.6",
     "zopflipng-bin": "^7.1.0"
   },
   "devDependencies": {
