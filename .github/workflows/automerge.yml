@@ -5,11 +5,12 @@ on:
     types:
       - opened
       - reopened
-permissions:
-  contents: write
-  pull-requests: write
-  repository-projects: write
+
+permissions: {}
 
 jobs:
   call:
+    permissions:
+      contents: write
+      pull-requests: write
     uses: chick-p/github-actions-shared-workflow/.github/workflows/dependabot-automerge.yml@19278e10d4e7f1860a5ff184e9ddc622bba230f3 # v0.4.0

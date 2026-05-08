@@ -8,8 +8,12 @@ on:
         required: true
         type: string
 
+permissions: {}
+
 jobs:
   call:
+    permissions:
+      contents: write
     uses: chick-p/github-actions-shared-workflow/.github/workflows/release.yml@19278e10d4e7f1860a5ff184e9ddc622bba230f3 # v0.4.0
     with:
       version: ${{ inputs.version }}
