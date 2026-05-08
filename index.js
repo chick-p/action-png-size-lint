@@ -1,7 +1,8 @@
 import * as core from "@actions/core";
 import { execFileSync } from "node:child_process";
 import { glob } from "glob";
-import zopflipng from "zopflipng-bin";
+
+const zopflipng = "zopflipng";
 
 async function main() {
   try {
