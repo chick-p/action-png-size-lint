@@ -21,7 +21,7 @@ updates:
     directory: "/"
     ignore:
       - dependency-name: "node"
-        versions: ["25-slim"]
+        versions: ["25-slim", "26-slim"]
     schedule:
       interval: "weekly"
       day: "saturday"
