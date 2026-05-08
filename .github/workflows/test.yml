@@ -5,8 +5,12 @@ on:
       - main
   pull_request:
 
+permissions: {}
+
 jobs:
   test:
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     name: Check size
     steps:
