@@ -1,7 +1,7 @@
 FROM node:24-slim
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends zopfli && \
+    apt-get install -y --no-install-recommends zopfli=1.0.3-1 && \
     rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /usr/local/src/image-actions
