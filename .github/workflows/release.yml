@@ -14,6 +14,6 @@ jobs:
   call:
     permissions:
       contents: write
-    uses: chick-p/github-actions-shared-workflow/.github/workflows/release.yml@19278e10d4e7f1860a5ff184e9ddc622bba230f3 # v0.4.0
+    uses: chick-p/github-actions-shared-workflow/.github/workflows/release.yml@2f12e0eb5d446e4f36a1247417445beda6ac474e # v0.4.1
     with:
       version: ${{ inputs.version }}
