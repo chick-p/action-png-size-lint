@@ -17,7 +17,7 @@
   "keywords": [],
   "dependencies": {
     "@actions/core": "^3.0.1",
-    "glob": "^14.0.4"
+    "glob": "^14.0.6"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
